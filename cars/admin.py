@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Car , CarImages , Model
+from .models import Car , CarImages , Model 
 from django_summernote.admin import SummernoteModelAdmin
 import admin_thumbnails
 

@@ -7,9 +7,9 @@ from django.db.models import Avg , Count
 # Create your models here.
 
 class Car(models.Model):
-    owner = models.ForeignKey(User, related_name='property_owner', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name='car_owner', on_delete=models.CASCADE)
     name = models.CharField(max_length=100 , help_text="enter your vin number her")
-    image_cover = models.ImageField(upload_to='property/')
+    image_cover = models.ImageField(upload_to='cars/')
     total_price = models.IntegerField(default=0)
     price_per_month = models.IntegerField(default=0,null=True,blank=True)
     description = models.TextField(max_length=10000)
@@ -60,4 +60,9 @@ class Model(models.Model):
         verbose_name_plural = "Car Model"
 
     def __str__(self):
-        return self.name
+        return str(self.name)
+
+
+    
+
+    
