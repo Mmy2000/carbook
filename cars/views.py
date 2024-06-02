@@ -15,3 +15,8 @@ class CarList(FilterView):
 
 class CarDetail( DetailView):
     model = Car
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["related"] = Car.objects.filter(model=self.get_object().model)[:3]
+        return context
