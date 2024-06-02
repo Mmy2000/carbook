@@ -1,7 +1,11 @@
 from django.contrib import admin
 from .models import Car , CarImages , Model
-# Register your models here.
+from django_summernote.admin import SummernoteModelAdmin
 
-admin.site.register(Car)
+# Register your models here.
+class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
+    summernote_fields = '__all__'
+    list_display = ['name' , 'total_price','model'  ,'owner']
+admin.site.register(Car,SomeModelAdmin)
 admin.site.register(CarImages)
 admin.site.register(Model)
