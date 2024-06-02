@@ -21,7 +21,7 @@ class Car(models.Model):
     transmission = models.CharField( max_length=50,null=True,blank=True)
     specifications = models.CharField( max_length=50,null=True,blank=True)
     fuel = models.CharField( max_length=50)
-    Color = models.CharField( max_length=50)
+    color = models.CharField( max_length=50)
     cylinders = models.IntegerField()
     doors = models.IntegerField()
     year = models.IntegerField()
