@@ -116,7 +116,8 @@ Profile
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-muted">
-                                {{profile.user.email}}
+                                {{profile.user.email}} ||
+                                {{profile.email_2}}
                             </div>
                         </div>
                         <hr>
@@ -125,7 +126,8 @@ Profile
                                 <h6 class="mb-0">Phone</h6>
                             </div>
                             <div class="col-sm-9 text-muted">
-                                {{profile.phone_number}}
+                                {{profile.phone_number_1}} ||
+                                {{profile.phone_number_2}}
                             </div>
                         </div>
                         <hr>
@@ -134,20 +136,17 @@ Profile
                                 <h6 class="mb-0">Address</h6>
                             </div>
                             <div class="col-sm-9 text-muted">
-                                {{profile.address}}
+                                {{profile.full_address}}
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-12">
                                 <a class="btn btn-primary " target="__blank"
-                                    href="{% url 'accounts:edit_profile' %}">Edit Profile</a>&nbsp;
-                                {% comment %} <a class="btn btn-primary " target="__blank"
-                                    href="{% url 'settings:dashboard' %}">Dashboard</a>&nbsp;
-                                <a class="btn btn-primary " target="__blank"
-                                    href="{% url 'accounts:forgotPassword' %}">Reset Password</a>&nbsp;
+                                    href="{% url 'edit_profile' %}">Edit Profile</a>&nbsp;
+                               
                                 <a class="btn btn-primary " target="__blank" href="{% url 'password_change' %}">Change
-                                    Password</a>&nbsp; {% endcomment %}
+                                    Password</a>&nbsp; 
                                 <a class="btn btn-primary " target="__blank" href="{% url 'logout' %}">Logout</a>&nbsp;
                                 
                             </div>
