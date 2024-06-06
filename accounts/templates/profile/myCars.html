@@ -21,51 +21,49 @@ My Cars
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
-                    {% if mycars %}
-                    {% for car in mycars %}
-                    <div class="col-md-3">
-                        <div class="car-wrap rounded ftco-animate">
-                            <div class="img rounded d-flex align-items-end"
-                                style="background-image: url({{car.image_cover.url}});">
-                            </div>
-                            <div class="text">
-                                <div class="d-flex justify-content-between">
-                                    <h2 class="mb-0"><a href="car-single.html">{{car.name}}</a></h2>
-                                    <p class="price ml-auto">${{car.total_price}}</p>
-                                </div>
-
-                                <div class="d-flex mb-3">
-                                    <span class="cat">{{car.model}}</span>
-                                    <p class="price ml-auto">${{car.price_per_month}} <span>/Month</span></p>
-                                </div>
-                                <p class="d-flex mb-0 d-block"> <a href="{{car.get_absolute_url}}"
-                                        class="btn btn-secondary w-100 py-2 ml-1">Details</a></p>
-                            </div>
+            {% if mycars %}
+            {% for car in mycars %}
+            <div class="col-md-3">
+                <div class="car-wrap rounded ftco-animate">
+                    <div class="img rounded d-flex align-items-end"
+                        style="background-image: url({{car.image_cover.url}});">
+                    </div>
+                    <div class="text">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="mb-0"><a href="car-single.html">{{car.name}}</a></h2>
+                            <p class="price ml-auto">${{car.total_price}}</p>
                         </div>
+
+                        <div class="d-flex mb-3">
+                            <span class="cat">{{car.model}}</span>
+                            <p class="price ml-auto">${{car.price_per_month}} <span>/Month</span></p>
+                        </div>
+                        <p class="d-flex mb-0 d-block"> <a href="{{car.get_absolute_url}}"
+                                class="btn btn-secondary w-100 py-2 ml-1">Details</a></p>
                     </div>
-                    {% endfor %}
-                    {% else %}
-                    <div class="text-center w-100 pt-5">
-                        <h2>No Result found</h2>
-                    </div>
-                    {% endif %}
                 </div>
             </div>
-
+            {% endfor %}
+            {% else %}
+            <div class="text-center w-100 pt-5">
+                <h2>No Result found</h2>
+            </div>
+            {% endif %}
         </div>
-        {% if is_paginated %}
+
+        {% if mycars.has_other_pages %}
         <div class="row mt-5">
             <div class="col text-center">
                 <div class="block-27">
                     <ul>
-                        {% if page_obj.has_previous %}
-                        <li><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
+                        {% if mycars.has_previous %}
+                        <li><a href="?page={{mycars.previous_page_number}}">&lt;</a></li>
                         {% else %}
                         <li class="disabled"><span>&lt;</span></a></li>
                         {% endif %}
 
-                        {% for i in paginator.page_range  %}
-                        {% if page_obj.number == i%}
+                        {% for i in mycars.paginator.page_range  %}
+                        {% if mycars.number == i%}
                         <li class="active"><span>{{i}}</span></li>
                         {%else%}
                         <li><a href="?page={{i}}">{{i}}</a></li>
@@ -73,8 +71,8 @@ My Cars
 
                         {% endfor %}
 
-                        {% if page_obj.has_next %}
-                        <li><a href="?page={{page_obj.next_page_number}}"><span>&gt;</span></a></li>
+                        {% if mycars.has_next %}
+                        <li><a href="?page={{mycars.next_page_number}}"><span>&gt;</span></a></li>
                         {% else %}
                         <li class="disabled"><span>&gt;</span></a></li>
                         {% endif %}

@@ -12,6 +12,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 from django.urls import reverse
 from cars.models import Car
+from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+
 # Create your views here.
 def signup(request):
     if request.method == "POST":
@@ -120,7 +122,10 @@ def resetPassword(request):
     
 def myCars(request):
     mycars = Car.objects.filter(owner=request.user)
+    paginator = Paginator(mycars,12)
+    page = request.GET.get('page')
+    paged_car = paginator.get_page(page)
     context = {
-        'mycars':mycars
+        'mycars':paged_car
     }
     return render(request , 'profile/myCars.html' , context)
