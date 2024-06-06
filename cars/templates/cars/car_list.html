@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load django_bootstrap5 %}
+{% load bootstrap4 %}
 {% load static %}
 {% block title %}
 Cars
@@ -25,16 +25,19 @@ Cars
     <div class="container">
         <div class="row">
             <div class="col-lg-3 sidebar">
-					<div class="sidebar-wrap bg-light ftco-animate">
-						<h3 class="heading mb-4">Find Car</h3>
-						<form class="form">
+                <div class="sidebar-wrap bg-light ftco-animate">
+                    <h3 class="heading mb-4">Find Car</h3>
+                    <form class="form">
                         {% csrf_token %}
                         {% bootstrap_form filter.form %}
-                        {% bootstrap_button button_type="submit" content="Search" %}
+                        {% buttons %}
+                        <button type="submit" class="btn btn-primary">Search</button>
+                        {% endbuttons %}
                     </form>
-					</div>
-					
-				</div>
+                </div>
+
+            </div>
+            {% if object_list %}
             {% for car in object_list %}
             <div class="col-md-3">
                 <div class="car-wrap rounded ftco-animate">
@@ -46,7 +49,7 @@ Cars
                             <h2 class="mb-0"><a href="car-single.html">{{car.name}}</a></h2>
                             <p class="price ml-auto">${{car.total_price}}</p>
                         </div>
-                        
+
                         <div class="d-flex mb-3">
                             <span class="cat">{{car.model}}</span>
                             <p class="price ml-auto">${{car.price_per_month}} <span>/Month</span></p>
@@ -57,6 +60,11 @@ Cars
                 </div>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="text-center w-75 pt-5">
+                <h2>No Result found</h2>
+            </div>
+            {% endif %}
 
         </div>
         {% if is_paginated %}
@@ -65,25 +73,25 @@ Cars
                 <div class="block-27">
                     <ul>
                         {% if page_obj.has_previous %}
-                                <li><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
-                                {% else %}
-                                <li class="disabled"><span>&lt;</span></a></li>
-                                {% endif %}
+                        <li><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&lt;</span></a></li>
+                        {% endif %}
 
-                                {% for i in paginator.page_range  %}
-                                {% if page_obj.number == i%}
-                                <li class="active"><span>{{i}}</span></li>
-                                {%else%}
-                                <li><a href="?page={{i}}">{{i}}</a></li>
-                                {% endif %}
+                        {% for i in paginator.page_range  %}
+                        {% if page_obj.number == i%}
+                        <li class="active"><span>{{i}}</span></li>
+                        {%else%}
+                        <li><a href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
 
-                                {% endfor %}
+                        {% endfor %}
 
-                                {% if page_obj.has_next %}
-                                <li><a href="?page={{page_obj.next_page_number}}"><span>&gt;</span></a></li>
-                                {% else %}
-                                <li class="disabled"><span>&gt;</span></a></li>
-                                {% endif %}
+                        {% if page_obj.has_next %}
+                        <li><a href="?page={{page_obj.next_page_number}}"><span>&gt;</span></a></li>
+                        {% else %}
+                        <li class="disabled"><span>&gt;</span></a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
