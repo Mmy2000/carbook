@@ -24,7 +24,7 @@ Cars
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 sidebar">
+            <div class="col-md-3 sidebar">
                 <div class="sidebar-wrap bg-light ftco-animate">
                     <h3 class="heading mb-4">Find Car</h3>
                     <form class="form">
@@ -37,34 +37,38 @@ Cars
                 </div>
 
             </div>
-            {% if object_list %}
-            {% for car in object_list %}
-            <div class="col-md-3">
-                <div class="car-wrap rounded ftco-animate">
-                    <div class="img rounded d-flex align-items-end"
-                        style="background-image: url({{car.image_cover.url}});">
-                    </div>
-                    <div class="text">
-                        <div class="d-flex justify-content-between">
-                            <h2 class="mb-0"><a href="car-single.html">{{car.name}}</a></h2>
-                            <p class="price ml-auto">${{car.total_price}}</p>
-                        </div>
+            <div class="col-md-9">
+                <div class="row">
+                    {% if object_list %}
+                    {% for car in object_list %}
+                    <div class="col-md-4">
+                        <div class="car-wrap rounded ftco-animate">
+                            <div class="img rounded d-flex align-items-end"
+                                style="background-image: url({{car.image_cover.url}});">
+                            </div>
+                            <div class="text">
+                                <div class="d-flex justify-content-between">
+                                    <h2 class="mb-0"><a href="car-single.html">{{car.name}}</a></h2>
+                                    <p class="price ml-auto">${{car.total_price}}</p>
+                                </div>
 
-                        <div class="d-flex mb-3">
-                            <span class="cat">{{car.model}}</span>
-                            <p class="price ml-auto">${{car.price_per_month}} <span>/Month</span></p>
+                                <div class="d-flex mb-3">
+                                    <span class="cat">{{car.model}}</span>
+                                    <p class="price ml-auto">${{car.price_per_month}} <span>/Month</span></p>
+                                </div>
+                                <p class="d-flex mb-0 d-block"> <a href="{{car.get_absolute_url}}"
+                                        class="btn btn-secondary w-100 py-2 ml-1">Details</a></p>
+                            </div>
                         </div>
-                        <p class="d-flex mb-0 d-block"> <a href="{{car.get_absolute_url}}"
-                                class="btn btn-secondary w-100 py-2 ml-1">Details</a></p>
                     </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="text-center w-75 pt-5">
+                        <h2>No Result found</h2>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
-            {% endfor %}
-            {% else %}
-            <div class="text-center w-75 pt-5">
-                <h2>No Result found</h2>
-            </div>
-            {% endif %}
 
         </div>
         {% if is_paginated %}
