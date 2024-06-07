@@ -5,6 +5,7 @@ from .filters import CarsFilter
 from django_filters.views import FilterView
 from django.urls import reverse
 from .forms import CarForm , CarImageForm , CarImageFormset
+from django.db.models.query_utils import Q
 
 # Create your views here.
 
@@ -21,6 +22,8 @@ class CarDetail( DetailView):
         context = super().get_context_data(**kwargs)
         context["related"] = Car.objects.filter(model=self.get_object().model)[:3]
         return context
+    
+
     
 class AddListing(CreateView):
     model = Car
