@@ -12,7 +12,7 @@ class ProductGallaryInline(admin.TabularInline):
 
 class SomeModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
     summernote_fields = '__all__'
-    list_display = ['name' , 'total_price','model'  ,'owner']
+    list_display = ['id','name' , 'total_price','model'  ,'owner']
     list_filter = ('name' , 'total_price' , 'model','owner','color')
     inlines = [ProductGallaryInline] 
 admin.site.register(Car,SomeModelAdmin)

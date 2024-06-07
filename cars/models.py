@@ -15,7 +15,7 @@ class Car(models.Model):
     description = models.TextField(max_length=10000)
     features = models.TextField(max_length=10000,null=True,blank=True)
     created_at = models.DateTimeField( default=timezone.now)
-    slug = models.SlugField(null=True,blank=True,unique=True)
+    slug = models.SlugField(null=True,blank=True)
     model = models.ForeignKey("Model",related_name='car_model', on_delete=models.CASCADE)
     mileage = models.CharField( max_length=50)
     transmission = models.CharField( max_length=50,null=True,blank=True)
@@ -36,7 +36,7 @@ class Car(models.Model):
         super(Car,self).save(*args,**kwargs)
     
     def get_absolute_url(self):
-        return reverse("car_details", kwargs={"slug": self.slug})
+        return reverse("car_details", kwargs={"pk":self.pk})
 
     def __str__(self):
         return self.name
