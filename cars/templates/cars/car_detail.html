@@ -243,7 +243,7 @@
                         style="background-image: url({{related.image_cover.url}});">
                     </div>
                     <div class="text">
-                        <h2 class="mb-0"><a href="car-single.html">{{related.name}}</a></h2>
+                        <h2 class="mb-0"><a href="{{car.get_absolute_url}}">{{related.name}}</a></h2>
                         <div class="d-flex mb-3">
                             <span class="cat">{{related.model}}</span>
                             <p class="price ml-auto">${{related.price_per_month}} <span>/month</span></p>

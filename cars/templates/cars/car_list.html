@@ -48,7 +48,7 @@ Cars
                             </div>
                             <div class="text">
                                 <div class="d-flex justify-content-between">
-                                    <h2 class="mb-0"><a href="car-single.html">{{car.name}}</a></h2>
+                                    <h2 class="mb-0"><a href="{{car.get_absolute_url}}">{{car.name}}</a></h2>
                                     <p class="price ml-auto">${{car.total_price}}</p>
                                 </div>
 
@@ -63,7 +63,7 @@ Cars
                     </div>
                     {% endfor %}
                     {% else %}
-                    <div class="text-center w-75 pt-5">
+                    <div class="text-center w-100 pt-5">
                         <h2>No Result found</h2>
                     </div>
                     {% endif %}
