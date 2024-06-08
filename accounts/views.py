@@ -25,6 +25,7 @@ def signup(request):
             passwords = form.cleaned_data["password1"]
             user = authenticate(username=usernames,password=passwords)
             login(request,user)
+            messages.success(request, ' Registered successfully')
 
             return redirect('/accounts/profile')
             
