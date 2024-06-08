@@ -7,6 +7,7 @@ from django.urls import reverse
 from .forms import CarForm , CarImageForm , CarImageFormset
 from django.db.models.query_utils import Q
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -73,3 +74,8 @@ class AddListing(CreateView):
                 form=form,
                 image_formset=image_formset,
             ))
+        
+def deleteCar(request , id):
+    car = Car.objects.get(id=id)
+    car.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

@@ -41,7 +41,7 @@ My Cars
                         <p class="d-flex mb-2 d-block"> <a href="{{car.get_absolute_url}}"
                                 class="btn btn-secondary w-100 py-2 ml-0">Details</a></p>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-danger w-50 mr-2">Delete</button>
+                            <a class="btn btn-danger w-50 mr-2" href="{% url 'deleteCar' car.id%}">Delete</a>
                             <button class="btn btn-warning w-50">Update</button>
                         </div>
                     </div>
