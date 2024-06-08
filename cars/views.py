@@ -9,6 +9,7 @@ from django.db.models.query_utils import Q
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -27,8 +28,7 @@ class CarDetail( DetailView):
         return context
     
 
-@login_required(login_url='login')  
-class AddListing(CreateView):
+class AddListing(LoginRequiredMixin,CreateView):
     model = Car
     form_class = CarForm
 
@@ -88,8 +88,7 @@ def deleteCar(request , id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
-@login_required(login_url='login')
-class UpdateListing(UpdateView):
+class UpdateListing(LoginRequiredMixin,UpdateView):
     model = Car
     form_class = CarForm
 
