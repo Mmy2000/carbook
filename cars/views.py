@@ -140,7 +140,7 @@ class UpdateListing(LoginRequiredMixin,UpdateView):
                 
             ### send gmail message
             messages.success(request, ' Your Car updated successfully')
-            return redirect(reverse('car_list'))
+            return redirect(reverse('my_cars'))
         else:
             return self.render_to_response(self.get_context_data(
                 form=form,
