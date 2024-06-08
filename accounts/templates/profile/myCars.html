@@ -38,8 +38,12 @@ My Cars
                             <span class="cat">{{car.model}}</span>
                             <p class="price ml-auto">${{car.price_per_month}} <span>/Month</span></p>
                         </div>
-                        <p class="d-flex mb-0 d-block"> <a href="{{car.get_absolute_url}}"
-                                class="btn btn-secondary w-100 py-2 ml-1">Details</a></p>
+                        <p class="d-flex mb-2 d-block"> <a href="{{car.get_absolute_url}}"
+                                class="btn btn-secondary w-100 py-2 ml-0">Details</a></p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-danger w-50 mr-2">Delete</button>
+                            <button class="btn btn-warning w-50">Update</button>
+                        </div>
                     </div>
                 </div>
             </div>
