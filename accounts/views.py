@@ -13,6 +13,7 @@ from django.core.mail import EmailMessage
 from django.urls import reverse
 from cars.models import Car
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def signup(request):
@@ -34,11 +35,14 @@ def signup(request):
 
     return render(request,'registration/signup.html',{'form':form})
 
+
+@login_required(login_url='login')
 def profile(request):
     profile=Profile.objects.get(user=request.user)
 
     return render(request,'profile/profile.html',{'profile':profile})
 
+@login_required(login_url='login')
 def edit_profile(requset):
     profile = Profile.objects.get(user=requset.user)
     if requset.method == "POST":
@@ -61,7 +65,7 @@ def edit_profile(requset):
         'profile_form':profile_form
     })
 
-
+@login_required(login_url='login')
 def forgotPassword(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -88,6 +92,7 @@ def forgotPassword(request):
             return redirect(reverse('accounts:forgotPassword'))
     return render(request, 'registration/password_reset_form.html')
 
+@login_required(login_url='login')
 def resetpassword_validate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -121,7 +126,8 @@ def resetPassword(request):
             return redirect(reverse('accounts:resetPassword'))
     else:
         return render(request, 'registration/resetPassword.html')
-    
+
+@login_required(login_url='login')  
 def myCars(request):
     mycars = Car.objects.filter(owner=request.user)
     paginator = Paginator(mycars,12)

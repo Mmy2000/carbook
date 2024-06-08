@@ -8,6 +8,7 @@ from .forms import CarForm , CarImageForm , CarImageFormset
 from django.db.models.query_utils import Q
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -26,7 +27,7 @@ class CarDetail( DetailView):
         return context
     
 
-    
+@login_required(login_url='login')  
 class AddListing(CreateView):
     model = Car
     form_class = CarForm
@@ -78,13 +79,16 @@ class AddListing(CreateView):
         context = super().get_context_data(**kwargs)
         context['action'] = 'Add'  # Add an action context variable for template differentiation
         return context
-        
+
+@login_required(login_url='login') 
 def deleteCar(request , id):
     car = Car.objects.get(id=id)
     car.delete()
     messages.success(request, ' Your Car deleted successfully')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+
+@login_required(login_url='login')
 class UpdateListing(UpdateView):
     model = Car
     form_class = CarForm
