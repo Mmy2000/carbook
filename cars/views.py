@@ -78,4 +78,5 @@ class AddListing(CreateView):
 def deleteCar(request , id):
     car = Car.objects.get(id=id)
     car.delete()
+    messages.success(request, ' Your Car deleted successfully')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
