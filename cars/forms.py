@@ -1,6 +1,8 @@
 from django import forms
 from django.forms.models import inlineformset_factory
 from .models import Car , CarImages , Model
+from django_summernote.widgets import SummernoteWidget
+
 
 class ModelForm(forms.ModelForm):
     class Meta:
@@ -24,11 +26,16 @@ CarImageFormset = inlineformset_factory(
 class CarForm(forms.ModelForm):
     new_model = forms.CharField(required=False)
     existing_model = forms.ModelChoiceField(queryset=Model.objects.all(), required=False)
+    
 
 
     class Meta:
         model = Car
         exclude = ('slug', 'owner', 'model')
+        widgets = {
+            'description': SummernoteWidget(),
+            'features': SummernoteWidget(),
+        }
 
     def clean(self):
         cleaned_data = super().clean()

@@ -43,7 +43,7 @@ My Cars
                                 class="btn btn-secondary w-100 py-2 ml-0">Details</a></p>
                         <div class="d-flex justify-content-between">
                             <a class="btn btn-danger w-50 mr-2" href="{% url 'deleteCar' car.id%}">Delete</a>
-                            <button class="btn btn-warning w-50">Update</button>
+                            <a href="{% url 'update_car' car.id%}" class="btn btn-warning w-50">Update</a>
                         </div>
                     </div>
                 </div>
