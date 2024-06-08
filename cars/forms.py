@@ -26,7 +26,9 @@ CarImageFormset = inlineformset_factory(
 class CarForm(forms.ModelForm):
     new_model = forms.CharField(required=False)
     existing_model = forms.ModelChoiceField(queryset=Model.objects.all(), required=False)
-    
+    created_at = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'})
+    )
 
 
     class Meta:
