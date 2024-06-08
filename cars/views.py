@@ -6,6 +6,7 @@ from django_filters.views import FilterView
 from django.urls import reverse
 from .forms import CarForm , CarImageForm , CarImageFormset
 from django.db.models.query_utils import Q
+from django.contrib import messages
 
 # Create your views here.
 
@@ -65,7 +66,7 @@ class AddListing(CreateView):
                 myform2.save()
                 
             ### send gmail message
-            
+            messages.success(request, ' Your Car added successfully')
             return redirect(reverse('car_list'))
         else:
             return self.render_to_response(self.get_context_data(
